@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+// useReducer: simple Counter
+
+import * as React from 'react';
+
+function countReducer(state, action) {
+  console.log('Inside Reducer');
+  console.log(state);
+  console.log(action);
+  return { ...state, ...action };
+}
+
+function Counter({ initialCount = 0, step = 1 }) {
+  const [state, setState] = React.useReducer(countReducer, {
+    count: initialCount,
+  });
+
+  console.log(state);
+
+  const { count } = state;
+
+  console.log(count);
+
+  const increment = () => setState(() => ({ count: count + step }));
+
+  return <button onClick={increment}>{count}</button>;
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <Counter />;
 }
 
 export default App;
