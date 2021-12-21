@@ -7,7 +7,7 @@ import UserProfile from './components/UserProfile';
 function App() {
   return (
     <>
-      <Header />
+      <Counter />
     </>
   );
 }
